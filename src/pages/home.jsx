@@ -1,19 +1,36 @@
-import { Container, Text, HStack } from '@chakra-ui/react'
+import { Box, SimpleGrid, VStack } from '@chakra-ui/react'
 import ProjectCard from '../components/ProjectCard'
 import { projects } from '../data/projects'
 
+const NUM_COLS = 3
+
 const Home = () => {
+  const columns = Array.from({ length: NUM_COLS }, (_, i) =>
+    projects.filter((_, j) => j % NUM_COLS === i)
+  )
+
   return (
-    <Container maxW="container.xl" py={12}>
-      <Text fontSize="30" fontWeight="bold" textAlign="center" mb={8}>
-        Welcome to my portfolio
-      </Text>
-      <HStack align="start" flexWrap="wrap" gap={4}>
-        {projects.map(project => (
-          <ProjectCard key={project.id} project={project} />
+    <Box px={12} py={8} h="100%" overflow="hidden">
+      <SimpleGrid columns={{ base: 2, md: 3 }} gap={4} h="100%">
+        {columns.map((col, i) => (
+          <VStack
+            key={i}
+            gap={4}
+            overflowY="auto"
+            h="100%"
+            pb={4}
+            alignItems="stretch"
+            css={{ '&::-webkit-scrollbar': { display: 'none' }, scrollbarWidth: 'none' }}
+          >
+            {col.map(project => (
+              <Box key={project.id} flexShrink={0}>
+                <ProjectCard project={project} />
+              </Box>
+            ))}
+          </VStack>
         ))}
-      </HStack>
-    </Container>
+      </SimpleGrid>
+    </Box>
   )
 }
 

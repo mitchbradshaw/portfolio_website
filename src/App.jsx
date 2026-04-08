@@ -7,13 +7,15 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <Box minH={"100vh"} bg={"gray.100"}>
+    <Box h={"100vh"} bg="black" _light={{ bg: 'white' }} display="flex" flexDirection="column">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects/:id" element={<ProjectPage />} />
-      </Routes>
+      <Box flex="1" overflow="hidden">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects/:id" element={<ProjectPage />} />
+        </Routes>
+      </Box>
     </Box>
   )
 }
