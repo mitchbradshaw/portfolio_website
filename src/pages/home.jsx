@@ -9,7 +9,7 @@ const Home = () => {
         <Text
           fontSize={"30"}
           fontWeight={"bold"}
-          textAlign={"center"}>Welcome to home page</Text></Container>);
+          textAlign={"center"}>Welcome to home page hahahah</Text></Container>);
 }
 
 export default Home
